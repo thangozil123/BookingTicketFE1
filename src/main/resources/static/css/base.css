@@ -15,7 +15,7 @@ html {
 }
 body {
     background-image:  linear-gradient(70deg,rgba(102, 211, 250,0.5),rgba(24, 123, 205,0.5)),
-    url(/image/phongkham1.jpg);
+    url(/image/BookingTicket.jpeg);
     background-size: cover;
     background-position: center;
     height:100vh;
