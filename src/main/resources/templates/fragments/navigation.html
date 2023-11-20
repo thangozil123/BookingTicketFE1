@@ -1,0 +1,46 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="col-sm-2" th:fragment="navigation">
+    <nav class="category">
+        <ul class="category-list">
+
+            <li class="category-item">
+                <span class="name-item">Sân bay</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index0">
+                        <a th:href="@{/sanbay/them}">Thêm sân bay</a>
+                    </li>
+                </ul>
+            </li>
+
+<!--            <li class="category-item">-->
+<!--                <span class="name-item">Hạng ghế</span>-->
+<!--                <ul class="category-item-list">-->
+<!--                    <li class="category-item-list-item index0">-->
+<!--                        <a th:href="@{/hangghe/them}">Thêm hạng ghế</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </li>-->
+
+            <li class="category-item">
+                <span class="name-item">Đặt vé</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index9">
+                        <a th:href="@{/datve/them}">Đặt vé</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="category-item">
+                <span class="name-item">Chuyến bay</span>
+                <ul class="category-item-list">
+                    <li class="category-item-list-item index9">
+                        <a th:href="@{/chuyenbay/them}">Thêm chuyến bay</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+</div>
+</body>

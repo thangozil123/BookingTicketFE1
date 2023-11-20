@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <title>Booking Ticket</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Thêm Chuyến Bay</h4>
+                    <form th:action="@{/chuyenbay/them}" th:method="post">
+
+                        <div class="lable_value">Chọn nơi đi:</div>
+                        <div class="input_value">
+                            <select name="noidi">
+                                <th:block th:each="noidi : ${sanbays}">
+                                    <option th:value="${noidi.id}" th:text="${noidi.tensanbay}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+
+                        <div class="lable_value">Chọn nơi đến:</div>
+                        <div class="input_value">
+                            <select name="noiden">
+                                <th:block th:each="noiden : ${sanbays}">
+                                    <option th:value="${noiden.id}" th:text="${noiden.tensanbay}"></option>
+                                </th:block>
+                            </select>
+                        </div>
+
+                        <div class="lable_value">Giờ đi:</div>
+                        <div class="input_value">
+                            <input type="text" name="giodi">
+                        </div>
+
+                        <div class="lable_value">Giờ đến:</div>
+                        <div class="input_value">
+                            <input type="text" name="gioden">
+                        </div>
+
+                        <div class="lable_value">Hãng hàng không:</div>
+                        <div class="input_value">
+                            <input type="text" name="hanghangkhong">
+                        </div>
+
+                        <div class="lable_value">Gía vé:</div>
+                        <div class="input_value">
+                            <input type="text" name="giave">
+                        </div>
+
+                        <div class="input_submit">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>
