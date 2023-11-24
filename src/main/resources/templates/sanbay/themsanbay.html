@@ -22,9 +22,11 @@
                     <h4> Thêm sân bay</h4>
                     <form th:action="@{/sanbay/them}"  th:method="post"  th:object="${sanbay}">
                         <div class="lable_value">Tên sân bay:</div>
+
                         <div class="input_value">
                             <input type="text" name="" th:field="*{tensanbay}">
                         </div>
+
                         <div class="input_submit">
                             <input type="submit" value="Submit">
                         </div>

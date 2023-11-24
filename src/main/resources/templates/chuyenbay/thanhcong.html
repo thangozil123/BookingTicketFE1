@@ -23,21 +23,37 @@
 
                     <div>
                         <span class="label_item">Nơi đi:</span>
-                        <span class="value_item" th:text="${chuyenbay}"></span>
+                        <span class="value_item" th:text="${chuyenbay.getNoiDi().tensanbay}"></span>
                     </div>
 
                     <div>
                         <span class="label_item">Nơi đến:</span>
-                        <span class="value_item" th:text="${sanbay.tensanbay}"></span>
+                        <span class="value_item" th:text="${chuyenbay.getNoiDen().tensanbay}"></span>
                     </div>
 
                     <div>
                         <span class="label_item">Giờ đi:</span>
-                        <span class="value_item" th:text="${sanbay.tensanbay}"></span>
+                        <span class="value_item" th:text="${chuyenbay.gioDi}"></span>
                     </div>
+
                     <div>
-                        <a class = "a_submit" th:href="@{'/sanbay/sua/'+${sanbay.id}}">Sửa</a>
-                        <a class = "a_submit" th:href="@{'/sanbay/xoa/'+${sanbay.id}}">Xóa</a>
+                        <span class="label_item">Giờ đến:</span>
+                        <span class="value_item" th:text="${chuyenbay.gioDen}"></span>
+                    </div>
+
+                    <div>
+                        <span class="label_item">Hãng hàng không:</span>
+                        <span class="value_item" th:text="${chuyenbay.hangHangKhong}"></span>
+                    </div>
+
+                    <div>
+                        <span class="label_item">Giá vé:</span>
+                        <span class="value_item" th:text="${chuyenbay.giaVe}"></span>
+                    </div>
+
+                    <div>
+                        <a class = "a_submit" th:href="@{'/chuyenbay/sua/'+${chuyenbay.id}}">Sửa</a>
+                        <a class = "a_submit" th:href="@{'/chuyenbay/xoa/'+${chuyenbay.id}}">Xóa</a>
                     </div>
                 </div>
             </div>

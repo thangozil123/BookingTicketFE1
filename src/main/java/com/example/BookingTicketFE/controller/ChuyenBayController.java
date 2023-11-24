@@ -7,10 +7,7 @@ import com.example.BookingTicketFE.entity.Ve;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.ParseException;
@@ -26,20 +23,33 @@ public class ChuyenBayController {
 
     @GetMapping("/them")
     public String getThemChuyenBay(Model model){
-        List<SanBay> sanBays = Arrays.asList(restTemplate.getForObject("http://localhost:8080/chuyenbay/all", SanBay[].class));
+        List<SanBay> sanBays = Arrays.asList(restTemplate.getForObject("http://localhost:8080/sanbay/all", SanBay[].class));
 
         model.addAttribute("sanbays",sanBays);
-
         return "/chuyenbay/themchuyenbay";
     }
 
     @PostMapping("/them")
-    public String themChuyenbay(@RequestParam(name = "sanbay") Long idNoidi, @RequestParam(name = "sanbay") Long idNoiden,
-                         @RequestParam(name = "sohanhkhach") int SHK, @RequestParam(name = "ngaydi") String ngaydi,
-                         @RequestParam(name = "ngaykhuhoi") String ngaykhuhoi, @RequestParam(name = "hangghe") Long idHG, Model model){
+    public String themChuyenbay(
+            @RequestParam(required=false,name = "noidi") Long idNoidi,
+            @RequestParam(required=false,name = "noiden") Long idNoiden,
+            @RequestParam(name = "giodi") String Giodi, @RequestParam(name = "gioden") String Gioden,
+            @RequestParam(name = "hanghangkhong") String HHK, @RequestParam(name = "giave") Long GV,
+            @RequestParam(name="ngaybay") String ngayBay,Model model) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Ve ve = new Ve();
+        ChuyenBay chuyenBay = new ChuyenBay();
+
+        chuyenBay.setGioDi(Giodi);
+        chuyenBay.setGioDen(Gioden);
+        chuyenBay.setHangHangKhong(HHK);
+        chuyenBay.setGiaVe(GV);
+        try {
+            chuyenBay.setNgayBay(simpleDateFormat.parse(ngayBay));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
 
         SanBay sanBay = new SanBay();
         sanBay.setId(idNoidi);
@@ -47,25 +57,53 @@ public class ChuyenBayController {
         SanBay sanBay1 = new SanBay();
         sanBay1.setId(idNoiden);
 
-        ve.setSohanhkhach(SHK);
+        chuyenBay.setNoiDi(sanBay);
+        chuyenBay.setNoiDen(sanBay1);
 
+        ChuyenBay chuyenBay1 =restTemplate.postForObject("http://localhost:8080/chuyenbay", chuyenBay, ChuyenBay.class);
+        model.addAttribute("chuyenbay", chuyenBay1);
+        return "chuyenbay/thanhcong";
+    }
+
+    @GetMapping("/sua/{id}")
+    public String getViewChuyenBayById( @PathVariable Long id,Model model){
+        ChuyenBay chuyenBay = restTemplate.getForObject("http://localhost:8080/chuyenbay/{id}",ChuyenBay.class,id);
+        List<SanBay> sanBays = Arrays.asList(restTemplate.getForObject("http://localhost:8080/sanbay/all",SanBay[].class));
+
+        model.addAttribute("sanbays",sanBays);
+        model.addAttribute("chuyenbay",chuyenBay);
+        return "chuyenbay/suachuyenbay";
+    }
+
+//  sửa chuyến bay
+    @PostMapping("/sua/{id}")
+    public String update(@RequestParam(required=false,name = "noidi") Long idNoidi, @PathVariable Long id,
+                         @RequestParam(required=false,name = "noiden") Long idNoiden,
+                         @RequestParam(name = "giodi") String Giodi, @RequestParam(name = "gioden") String Gioden,
+                         @RequestParam(name = "hanghangkhong") String HHK, @RequestParam(name = "giave") Long GV,
+                         @RequestParam(name="ngaybay") String ngayBay,Model model) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        ChuyenBay chuyenBay = new ChuyenBay();
+
+        chuyenBay.setGioDi(Giodi);
+        chuyenBay.setGioDen(Gioden);
+        chuyenBay.setHangHangKhong(HHK);
+        chuyenBay.setGiaVe(GV);
         try {
-            ve.setNgaydi(simpleDateFormat.parse(ngaydi));
-            ve.setNgaykhuhoi(simpleDateFormat.parse(ngaykhuhoi));
-        }
-        catch (ParseException e){
+            chuyenBay.setNgayBay(simpleDateFormat.parse(ngayBay));
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        HangGhe hangGhe = new HangGhe();
-        hangGhe.setId(idHG);
+        SanBay sanBay = restTemplate.getForObject("http://localhost:8080/sanbay/{id}", SanBay.class, idNoidi);
+        SanBay sanBay1 = restTemplate.getForObject("http://localhost:8080/sanbay/{id}", SanBay.class, idNoiden);
 
-        ve.setNoidi(sanBay);
-        ve.setNoiden(sanBay1);
-        ve.setHangghe(hangGhe);
-
-        Ve ve1 =restTemplate.postForObject("http://localhost:8080/datve", ve, Ve.class);
-        model.addAttribute("ve", ve1);
+        chuyenBay.setNoiDi(sanBay);
+        chuyenBay.setNoiDen(sanBay1);
+        chuyenBay.setId(id);
+        restTemplate.put("http://localhost:8080/chuyenbay/{id}",chuyenBay,id);
+        model.addAttribute("chuyenbay", chuyenBay);
         return "chuyenbay/thanhcong";
     }
 }
