@@ -8,4 +8,5 @@ import java.io.Serializable;
 public class SanBay implements Serializable {
     private Long id;
     private String tensanbay;
+    private String maSB;
 }

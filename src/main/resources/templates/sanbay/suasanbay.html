@@ -21,6 +21,11 @@
                 <div class="content">
                     <h4> Sửa sân bay</h4>
                     <form th:action="@{'/sanbay/sua/'+${sanbay.id}}" th:method="post" th:object="${sanbay}">
+                        <div class="lable_value">Mã sân bay:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{maSB}" th:value="${sanbay.maSB}">
+                        </div>
+
                         <div class="lable_value">Tên sân bay:</div>
                         <div class="input_value">
                             <input type="text" name="" th:field="*{tensanbay}" th:value="${sanbay.tensanbay}">
