@@ -106,4 +106,10 @@ public class ChuyenBayController {
         model.addAttribute("chuyenbay", chuyenBay);
         return "chuyenbay/thanhcong";
     }
+//  XÓa chuyến bay
+    @GetMapping("/xoa/{id}")
+    public String delete(@PathVariable Long id){
+        restTemplate.delete("http://localhost:8080/chuyenbay/{id}",id);
+        return "index";
+    }
 }

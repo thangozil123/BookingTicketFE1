@@ -21,20 +21,63 @@
                 <div class="content">
                     <h4> Thêm Chuyến bay</h4>
                     <form th:action="@{'/chuyenbay/sua/'+${chuyenbay.id}}" th:method="post">
+
                         <div class="lable_value">Chọn nơi đi:</div>
                         <div class="input_value">
                             <select name="noidi">
                                 <th:block th:each="noidi : ${sanbays}">
-                                    <th:block th:if="${benh.id} != ${lankham.getBenh().id}">
-                                        <option th:value="${benh.id}" th:text="${benh.benh}"></option>
+                                    <th:block th:if="${noidi.id} != ${chuyenbay.getNoiDi().id}">
+                                        <option th:value="${noidi.id}" th:text="${noidi.tensanbay}"></option>
                                     </th:block>
-                                    <th:block th:if="${benh.id} == ${lankham.getBenh().id}">
-                                        <option th:value="${benh.id}" th:text="${benh.benh}" selected></option>
+                                    <th:block th:if="${noidi.id} == ${chuyenbay.getNoiDi().id}">
+                                        <option th:value="${noidi.id}" th:text="${noidi.tensanbay}" selected></option>
                                     </th:block>
                                 </th:block>
                             </select>
                         </div>
 
+                        <div class="lable_value">Chọn nơi đến:</div>
+                        <div class="input_value">
+                            <select name="noiden">
+                                <th:block th:each="noiden : ${sanbays}">
+                                    <th:block th:if="${noiden.id} != ${chuyenbay.getNoiDen().id}">
+                                        <option th:value="${noiden.id}" th:text="${noiden.tensanbay}"></option>
+                                    </th:block>
+                                    <th:block th:if="${noiden.id} == ${chuyenbay.getNoiDen().id}">
+                                        <option th:value="${noiden.id}" th:text="${noiden.tensanbay}" selected></option>
+                                    </th:block>
+                                </th:block>
+                            </select>
+                        </div>
+
+                        <div class="lable_value">Ngày Bay:</div>
+                        <div class="input_value">
+                            <input type="date" name="ngaybay" th:value="${#dates.format(chuyenbay.getNgayBay(), 'yyyy-MM-dd')}">
+                        </div>
+
+                        <div class="lable_value">Giờ đi:</div>
+                        <div class="input_value">
+                            <input type="text" name="giodi" th:value="${chuyenbay.gioDi}">
+                        </div>
+
+                        <div class="lable_value">Giờ đến:</div>
+                        <div class="input_value">
+                            <input type="text" name="gioden" th:value="${chuyenbay.gioDen}">
+                        </div>
+
+                        <div class="lable_value">GHãng hàng không:</div>
+                        <div class="input_value">
+                            <input type="text" name="hanghangkhong" th:value="${chuyenbay.hangHangKhong}">
+                        </div>
+
+                        <div class="lable_value">Giá vé:</div>
+                        <div class="input_value">
+                            <input type="text" name="giave" th:value="${chuyenbay.giaVe}">
+                        </div>
+
+                        <div class="input_submit">
+                            <input type="submit" value="Submit">
+                        </div>
                     </form>
                 </div>
             </div>

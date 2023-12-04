@@ -3,10 +3,7 @@ package com.example.BookingTicketFE.controller;
 import com.example.BookingTicketFE.entity.SanBay;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @Controller
@@ -45,5 +42,5 @@ public class SanBayController {
     public String delete(@PathVariable Long id){
         restTemplate.delete("http://localhost:8080/sanbay/{id}",id);
         return "index";
-}
+    }
 }
