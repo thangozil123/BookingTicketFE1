@@ -35,7 +35,7 @@ public class ChuyenBayController {
             @RequestParam(required=false,name = "noiden") Long idNoiden,
             @RequestParam(name = "giodi") String Giodi, @RequestParam(name = "gioden") String Gioden,
             @RequestParam(name = "hanghangkhong") String HHK, @RequestParam(name = "giave") Long GV,
-            @RequestParam(name="ngaybay") String ngayBay,Model model) {
+            @RequestParam(name="ngaybay") String ngayBay,@RequestParam(name = "maCB") String maCB, Model model) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         ChuyenBay chuyenBay = new ChuyenBay();
@@ -44,6 +44,7 @@ public class ChuyenBayController {
         chuyenBay.setGioDen(Gioden);
         chuyenBay.setHangHangKhong(HHK);
         chuyenBay.setGiaVe(GV);
+        chuyenBay.setMaCB(maCB);
         try {
             chuyenBay.setNgayBay(simpleDateFormat.parse(ngayBay));
         } catch (ParseException e) {
@@ -81,7 +82,7 @@ public class ChuyenBayController {
                          @RequestParam(required=false,name = "noiden") Long idNoiden,
                          @RequestParam(name = "giodi") String Giodi, @RequestParam(name = "gioden") String Gioden,
                          @RequestParam(name = "hanghangkhong") String HHK, @RequestParam(name = "giave") Long GV,
-                         @RequestParam(name="ngaybay") String ngayBay,Model model) {
+                         @RequestParam(name="ngaybay") String ngayBay,@RequestParam(name = "maCB") String maCB, Model model) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         ChuyenBay chuyenBay = new ChuyenBay();
@@ -90,6 +91,7 @@ public class ChuyenBayController {
         chuyenBay.setGioDen(Gioden);
         chuyenBay.setHangHangKhong(HHK);
         chuyenBay.setGiaVe(GV);
+        chuyenBay.setMaCB(maCB);
         try {
             chuyenBay.setNgayBay(simpleDateFormat.parse(ngayBay));
         } catch (ParseException e) {

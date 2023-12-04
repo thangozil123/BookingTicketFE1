@@ -17,4 +17,5 @@ public class ChuyenBay implements Serializable {
     private Long giaVe;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayBay;
+    private String maCB;
 }

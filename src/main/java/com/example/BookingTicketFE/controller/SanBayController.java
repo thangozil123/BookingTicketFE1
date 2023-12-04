@@ -43,4 +43,16 @@ public class SanBayController {
         restTemplate.delete("http://localhost:8080/sanbay/{id}",id);
         return "index";
     }
+
+    @GetMapping("/timkiem")
+    public String timkiem(Model model){
+        model.addAttribute("sanbay",null);
+        return "sanbay/timkiemsanbay";
+    }
+    @PostMapping("/timkiem")
+    public String ketquaTimKiem(@RequestParam(name="maSB") String maSB, Model model){
+        SanBay sanBay = restTemplate.getForObject("http://localhost:8080/sanbay?maSB="+maSB,SanBay.class);
+        model.addAttribute("sanbay",sanBay);
+        return "sanbay/timkiemsanbay";
+    }
 }
