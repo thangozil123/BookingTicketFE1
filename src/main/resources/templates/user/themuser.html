@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <title>Đăng ký</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <!--        <div th:replace="fragments/header.html :: header"></div>-->
+        <div class="row">
+            <!--            <div th:replace="fragments/navigation.html :: navigation"></div>-->
+            <div class="col-sm-12">
+                <div class="content">
+                    <h4> Đăng ký tài khoản</h4>
+                    <form th:action="@{/user/them}"  th:method="post"  th:object="${user}">
+                        <div class="lable_value">Họ và tên:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{hoten}">
+                        </div>
+
+                        <div class="lable_value">Username:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{username}">
+                        </div>
+
+                        <div class="lable_value">Password:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{password}">
+                        </div>
+
+                        <div class="lable_value">Email:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{email}">
+                        </div>
+
+                        <div class="lable_value">Số điện thoại:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{sdt}">
+                        </div>
+
+                        <div class="lable_value">Địa chỉ:</div>
+                        <div class="input_value">
+                            <input type="text" name="" th:field="*{diachi}">
+                        </div>
+
+                        <div class="input_submit">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>
