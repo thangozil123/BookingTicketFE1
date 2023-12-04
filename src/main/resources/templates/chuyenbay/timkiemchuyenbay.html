@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <link rel="stylesheet" href="/css/timkiem.css">
+    <title>Booking Ticket</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Tìm Kiếm Chuyến Bay</h4>
+                    <form action="" method="post" class="form_timkiem">
+                        <div>
+                            <input type="text" name="maCB" placeholder="Nhập mã chuyến bay">
+                            <input type="submit" value="Tim Kiếm">
+                        </div>
+                    </form>
+
+                    <th:block th:if="${chuyenbay}">
+                        <div>
+                            <span class="label_item">Mã Chuyến Bay:</span>
+                            <span class="value_item" th:text="${chuyenbay.maCB}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Nơi đi</span>
+                            <span class="value_item" th:text="${chuyenbay.getNoiDi().tensanbay}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Nơi đến</span>
+                            <span class="value_item" th:text="${chuyenbay.getNoiDen().tensanbay}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Ngày Bay:</span>
+                            <span class="value_item" th:text="${#dates.format(chuyenbay.getNgayBay(), 'yyyy-MM-dd')}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Giờ đi:</span>
+                            <span class="value_item" th:text="${chuyenbay.gioDi}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Giờ đến:</span>
+                            <span class="value_item" th:text="${chuyenbay.gioDen}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Hãng hàng không:</span>
+                            <span class="value_item" th:text="${chuyenbay.hangHangKhong}"></span>
+                        </div>
+
+                        <div>
+                            <span class="label_item">Giá vé:</span>
+                            <span class="value_item" th:text="${chuyenbay.giaVe}"></span>
+                        </div>
+                        <div>
+                            <a class = "a_submit" th:href="@{'/chuyenbay/sua/'+${chuyenbay.id}}">Sửa</a>
+                            <a class = "a_submit" th:href="@{'/chuyenbay/xoa/'+${chuyenbay.id}}">Xóa</a>
+                        </div>
+                    </th:block>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

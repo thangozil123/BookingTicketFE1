@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/thanhcong.css">
+    <link rel="stylesheet" href="/css/timkiem.css">
+    <title>Booking Ticket</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="grid">
+        <div th:replace="fragments/header.html :: header"></div>
+        <div class="row">
+            <div th:replace="fragments/navigation.html :: navigation"></div>
+            <div class="col-sm-10">
+                <div class="content">
+                    <h4> Tìm Kiếm Sân Bay</h4>
+                    <form action="" method="post" class="form_timkiem">
+                        <div>
+                            <input type="text" name="maSB" placeholder="Nhập mã sân bay">
+                            <input type="submit" value="Tim Kiếm">
+                        </div>
+                    </form>
+
+                    <th:block th:if="${sanbay}">
+                        <div>
+                            <span class="label_item">Mã Sân Bay:</span>
+                            <span class="value_item" th:text="${sanbay.maSB}"></span>
+                        </div>
+                        <div>
+                            <span class="label_item">Họ Tên:</span>
+                            <span class="value_item" th:text="${sanbay.tensanbay}"></span>
+                        </div>
+                        <div>
+                            <a class = "a_submit" th:href="@{'/sanbay/sua/'+${sanbay.id}}">Sửa</a>
+                            <a class = "a_submit" th:href="@{'/sanbay/xoa/'+${sanbay.id}}">Xóa</a>
+                        </div>
+                    </th:block>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/base.js"></script>
+</body>

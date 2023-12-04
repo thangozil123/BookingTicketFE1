@@ -114,4 +114,16 @@ public class ChuyenBayController {
         restTemplate.delete("http://localhost:8080/chuyenbay/{id}",id);
         return "index";
     }
+//  tìm kiếm chuyến bay
+    @GetMapping("/timkiem")
+    public String timkiem(Model model){
+         model.addAttribute("chuyenbay",null);
+        return "chuyenbay/timkiemchuyenbay";
+    }
+    @PostMapping("/timkiem")
+    public String ketquaTimKiem(@RequestParam(name="maCB") String maCB, Model model){
+        ChuyenBay chuyenBay = restTemplate.getForObject("http://localhost:8080/chuyenbay?maCB="+maCB,ChuyenBay.class);
+        model.addAttribute("chuyenbay",chuyenBay);
+        return "chuyenbay/timkiemchuyenbay";
+    }
 }
