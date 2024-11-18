@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 @RequestMapping("sanbay")
 public class SanBayController {
@@ -41,7 +44,7 @@ public class SanBayController {
     @GetMapping("/xoa/{id}")
     public String delete(@PathVariable Long id){
         restTemplate.delete("http://localhost:8080/sanbay/{id}",id);
-        return "index";
+        return "/sanbay/dssanbay";
     }
 
     @GetMapping("/timkiem")
@@ -54,5 +57,13 @@ public class SanBayController {
         SanBay sanBay = restTemplate.getForObject("http://localhost:8080/sanbay?maSB="+maSB,SanBay.class);
         model.addAttribute("sanbay",sanBay);
         return "sanbay/timkiemsanbay";
+    }
+
+    @GetMapping("/danhsach")
+    public String danhsachsanbay(Model model){
+        List<SanBay> sanBays = Arrays.asList(restTemplate.getForObject("http://localhost:8080/sanbay/danhsach", SanBay[].class));
+
+        model.addAttribute("sanbays",sanBays);
+        return "/sanbay/dssanbay";
     }
 }

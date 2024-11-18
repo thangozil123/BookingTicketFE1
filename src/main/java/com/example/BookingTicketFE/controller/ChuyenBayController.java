@@ -23,7 +23,7 @@ public class ChuyenBayController {
 
     @GetMapping("/them")
     public String getThemChuyenBay(Model model){
-        List<SanBay> sanBays = Arrays.asList(restTemplate.getForObject("http://localhost:8080/sanbay/all", SanBay[].class));
+        List<SanBay> sanBays = Arrays.asList(restTemplate.getForObject("http://localhost:8080/sanbay/danhsach", SanBay[].class));
 
         model.addAttribute("sanbays",sanBays);
         return "/chuyenbay/themchuyenbay";

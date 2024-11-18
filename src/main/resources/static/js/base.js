@@ -7,14 +7,3 @@ list.forEach((item,index) => {
         this.classList.toggle('category-item--active')
     }
 });
-// nav click
-// var itemList = $$('.category-item-list-item')
-// itemList.forEach((item,index) => {
-//     item.addEventListener('click',function(e){
-//         var active= $('.category-item-list-item--active')
-//         if(active!==null){
-//             active.classList.remove('category-item-list-item--active');
-//         }
-//         this.classList.add('category-item-list-item--active')
-//     });
-// });
